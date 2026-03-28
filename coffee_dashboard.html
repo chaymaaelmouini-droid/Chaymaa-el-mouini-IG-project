@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Sales Dashboard — ENCG Settat</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --primary: #006633;
+      --secondary: #D4A017;
+      --bg: #f0f4f1;
+      --card-bg: #ffffff;
+      --text: #1a2e22;
+      --text-light: #5a7a65;
+      --border: #d0e4d8;
+      --shadow: 0 2px 12px rgba(0,102,51,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #006633, #004d26);
+      color: white;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-left h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+    .header-left p { font-size: 0.9rem; opacity: 0.8; margin-top: 4px; }
+    .header-badge {
+      background: var(--secondary);
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* MAIN */
+    main { padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
+
+    /* KPI CARDS */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+      transition: transform 0.15s;
+    }
+    .kpi-card:hover { transform: translateY(-2px); }
+    .kpi-card.gold { border-left-color: var(--secondary); }
+    .kpi-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-light); font-weight: 600; margin-bottom: 8px; }
+    .kpi-value { font-size: 2rem; font-weight: 700; color: var(--primary); line-height: 1; }
+    .kpi-card.gold .kpi-value { color: #b8860b; }
+    .kpi-sub { font-size: 0.78rem; color: var(--text-light); margin-top: 6px; }
+
+    /* CHARTS GRID */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .charts-grid.three { grid-template-columns: 2fr 1fr; }
+    .chart-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .chart-card.full { grid-column: 1 / -1; }
+    .chart-title { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .chart-title::before { content: ''; display: inline-block; width: 4px; height: 16px; background: var(--primary); border-radius: 2px; }
+    .chart-wrap { position: relative; }
+
+    /* TABLE */
+    .table-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+    .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .table-search input {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      outline: none;
+      width: 220px;
+    }
+    .table-search input:focus { border-color: var(--primary); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    thead th { background: var(--primary); color: white; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    thead th:first-child { border-radius: 8px 0 0 0; }
+    thead th:last-child { border-radius: 0 8px 0 0; }
+    tbody tr:nth-child(even) { background: #f5fbf7; }
+    tbody tr:hover { background: #e8f5ee; }
+    tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .badge-card { background: #e8f5ee; color: var(--primary); padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+    .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 16px; }
+    .pagination button { border: 1px solid var(--border); background: white; border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 0.82rem; color: var(--text); }
+    .pagination button:hover { background: var(--primary); color: white; border-color: var(--primary); }
+    .pagination button.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .page-info { font-size: 0.82rem; color: var(--text-light); }
+
+    /* FOOTER */
+    footer {
+      background: linear-gradient(135deg, #006633, #004d26);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 16px 40px;
+      font-size: 0.8rem;
+    }
+    footer strong { color: white; }
+
+    @media (max-width: 768px) {
+      main { padding: 20px; }
+      .charts-grid, .charts-grid.three { grid-template-columns: 1fr; }
+      header { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>☕ Coffee Sales Dashboard</h1>
+    <p>ENCG Settat — Université Hassan 1er &nbsp;|&nbsp; Données Commerciales 2024–2025</p>
+  </div>
+  <div class="header-badge">Performance Commerciale</div>
+</header>
+
+<main>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Chiffre d'Affaires Total</div>
+      <div class="kpi-value">112 246 €</div>
+      <div class="kpi-sub">Mars 2024 → Mars 2025</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Total Transactions</div>
+      <div class="kpi-value">3 547</div>
+      <div class="kpi-sub">Toutes commandes confondues</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Panier Moyen</div>
+      <div class="kpi-value">31,65 €</div>
+      <div class="kpi-sub">Par transaction</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Top Produit</div>
+      <div class="kpi-value">Latte</div>
+      <div class="kpi-sub">26 875 € de CA · 757 ventes</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Meilleur Mois</div>
+      <div class="kpi-value">Mars</div>
+      <div class="kpi-sub">15 892 € · 494 transactions</div>
+    </div>
+    <div class="kpi-card gold">
+      <div class="kpi-label">Pic Horaire</div>
+      <div class="kpi-value">10h00</div>
+      <div class="kpi-sub">10 199 € de CA cumulé</div>
+    </div>
+  </div>
+
+  <!-- CHART ROW 1 -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Chiffre d'Affaires Mensuel</div>
+      <div class="chart-wrap"><canvas id="chartMonth" height="220"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Répartition par Produit</div>
+      <div class="chart-wrap"><canvas id="chartDoughnut" height="220"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CHART ROW 2 -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Ventes par Jour de la Semaine</div>
+      <div class="chart-wrap"><canvas id="chartWeekday" height="200"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Distribution Horaire des Ventes</div>
+      <div class="chart-wrap"><canvas id="chartHour" height="200"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CHART ROW 3 -->
+  <div class="charts-grid">
+    <div class="chart-card full">
+      <div class="chart-title">Revenus par Produit (CA & Volume)</div>
+      <div class="chart-wrap"><canvas id="chartProduct" height="120"></canvas></div>
+    </div>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="table-card">
+    <div class="table-header">
+      <div class="chart-title" style="margin:0">Détail des Ventes par Produit</div>
+      <div class="table-search"><input type="text" id="tableSearch" placeholder="🔍 Rechercher..." oninput="filterTable()"></div>
+    </div>
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Nombre de Ventes</th>
+          <th>CA Total (€)</th>
+          <th>Prix Moyen (€)</th>
+          <th>Part du CA</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+    <p class="page-info" id="pageInfo" style="text-align:center;margin-top:8px;"></p>
+  </div>
+
+</main>
+
+<footer>
+  <strong>ENCG Settat</strong> — École Nationale de Commerce et de Gestion &nbsp;|&nbsp;
+  Université Hassan 1er &nbsp;|&nbsp; Dashboard généré automatiquement · Données Coffee Sales 2024–2025
+</footer>
+
+<script>
+  const COLORS = {
+    green: '#006633', gold: '#D4A017',
+    greens: ['#006633','#008844','#00aa55','#33bb77','#66cc99','#99ddbb','#cceedd','#e0f5ea'],
+    mixed: ['#006633','#D4A017','#2E86AB','#E84855','#3BB273','#F18F01','#A23B72','#C73E1D']
+  };
+
+  // Monthly data
+  const months = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+  const monthRevenue = [6398.86,13215.48,15891.64,5719.56,8164.42,7617.76,6915.94,7613.84,9988.64,13891.16,8590.54,8237.74];
+  const monthCount = [201,423,494,168,241,223,237,272,344,426,259,259];
+
+  // Product data
+  const products = ['Americano','Americano with Milk','Cappuccino','Cocoa','Cortado','Espresso','Hot Chocolate','Latte'];
+  const prodRevenue = [14650.26,24751.12,17439.14,8521.16,7384.86,2690.28,9933.46,26875.30];
+  const prodCount = [564,809,486,239,287,129,276,757];
+
+  // Weekday data
+  const weekdays = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const weekdayRev = [17363.10,18168.38,15750.46,16091.40,16802.66,14733.52,13336.06];
+
+  // Hourly data
+  const hours = ['6h','7h','8h','9h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h','20h','21h','22h'];
+  const hourRev = [149.4,2846.02,7017.88,7264.28,10198.52,8453.10,7419.62,7028.76,7173.80,7476.02,9031.84,7659.76,7162.60,7751.96,5578.92,6397.94,3635.16];
+
+  // Chart defaults
+  Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+  Chart.defaults.color = '#5a7a65';
+
+  // Monthly line chart
+  new Chart(document.getElementById('chartMonth'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [{
+        label: 'CA (€)',
+        data: monthRevenue,
+        backgroundColor: monthRevenue.map(v => v === Math.max(...monthRevenue) ? COLORS.gold : COLORS.green + 'cc'),
+        borderColor: monthRevenue.map(v => v === Math.max(...monthRevenue) ? '#b8860b' : COLORS.green),
+        borderWidth: 1.5,
+        borderRadius: 6,
+        yAxisID: 'y'
+      },{
+        label: 'Transactions',
+        data: monthCount,
+        type: 'line',
+        borderColor: COLORS.gold,
+        backgroundColor: 'transparent',
+        pointBackgroundColor: COLORS.gold,
+        pointRadius: 4,
+        tension: 0.4,
+        yAxisID: 'y1'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top' }, tooltip: { mode: 'index' } },
+      scales: {
+        y: { grid: { color: '#e8f0eb' }, ticks: { callback: v => v.toLocaleString('fr') + ' €' } },
+        y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + ' cmd' } }
+      }
+    }
+  });
+
+  // Doughnut
+  new Chart(document.getElementById('chartDoughnut'), {
+    type: 'doughnut',
+    data: {
+      labels: products,
+      datasets: [{ data: prodRevenue, backgroundColor: COLORS.mixed, borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      responsive: true,
+      cutout: '62%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, padding: 10 } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed.toLocaleString('fr')} €` } }
+      }
+    }
+  });
+
+  // Weekday bar
+  new Chart(document.getElementById('chartWeekday'), {
+    type: 'bar',
+    data: {
+      labels: weekdays,
+      datasets: [{
+        label: 'CA (€)',
+        data: weekdayRev,
+        backgroundColor: weekdayRev.map(v => v === Math.max(...weekdayRev) ? COLORS.gold : COLORS.green + 'bb'),
+        borderRadius: 6, borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#e8f0eb' }, ticks: { callback: v => v.toLocaleString('fr') + ' €' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Hourly area chart
+  new Chart(document.getElementById('chartHour'), {
+    type: 'line',
+    data: {
+      labels: hours,
+      datasets: [{
+        label: 'CA (€)',
+        data: hourRev,
+        borderColor: COLORS.green,
+        backgroundColor: COLORS.green + '22',
+        fill: true, tension: 0.4,
+        pointBackgroundColor: COLORS.green,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#e8f0eb' }, ticks: { callback: v => v.toLocaleString('fr') + ' €' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Product bar chart
+  const totalCA = prodRevenue.reduce((a,b) => a+b, 0);
+  new Chart(document.getElementById('chartProduct'), {
+    type: 'bar',
+    data: {
+      labels: products,
+      datasets: [
+        { label: 'CA (€)', data: prodRevenue, backgroundColor: COLORS.green + 'cc', borderColor: COLORS.green, borderWidth: 1.5, borderRadius: 5, yAxisID: 'y' },
+        { label: 'Ventes', data: prodCount, backgroundColor: COLORS.gold + 'bb', borderColor: COLORS.gold, borderWidth: 1.5, borderRadius: 5, yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'top' } },
+      scales: {
+        y: { grid: { color: '#e8f0eb' }, ticks: { callback: v => v.toLocaleString('fr') + ' €' } },
+        y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + ' ventes' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Table data
+  const tableData = products.map((p, i) => ({
+    name: p,
+    count: prodCount[i],
+    revenue: prodRevenue[i],
+    avg: (prodRevenue[i] / prodCount[i]).toFixed(2),
+    share: ((prodRevenue[i] / totalCA) * 100).toFixed(1)
+  })).sort((a,b) => b.revenue - a.revenue);
+
+  let filtered = [...tableData];
+  let page = 1;
+  const perPage = 10;
+
+  function renderTable() {
+    const start = (page - 1) * perPage;
+    const rows = filtered.slice(start, start + perPage);
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td><strong>${r.name}</strong></td>
+        <td>${r.count.toLocaleString('fr')}</td>
+        <td>${parseFloat(r.revenue).toLocaleString('fr', {minimumFractionDigits:2})} €</td>
+        <td>${r.avg} €</td>
+        <td><span class="badge-card">${r.share}%</span></td>
+      </tr>
+    `).join('');
+    const total = filtered.length;
+    const pages = Math.ceil(total / perPage);
+    const pg = document.getElementById('pagination');
+    pg.innerHTML = '';
+    for (let i = 1; i <= pages; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      if (i === page) btn.classList.add('active');
+      btn.onclick = () => { page = i; renderTable(); };
+      pg.appendChild(btn);
+    }
+    document.getElementById('pageInfo').textContent = `${total} produit(s) · Page ${page}/${pages}`;
+  }
+
+  function filterTable() {
+    const q = document.getElementById('tableSearch').value.toLowerCase();
+    filtered = tableData.filter(r => r.name.toLowerCase().includes(q));
+    page = 1;
+    renderTable();
+  }
+
+  renderTable();
+</script>
+</body>
+</html>
