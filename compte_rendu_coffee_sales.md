@@ -1,6 +1,6 @@
 # ☕ Compte Rendu — Analyse des Ventes Coffee Sales
 
-**Préparé par : Chaymaa El Mouini**
+**Préparé par : CHAYMAA EL MOUINI**
 *ENCG Settat — Université Hassan 1er*
 *Performance Commerciale | Mars 2024 → Mars 2025*
 
