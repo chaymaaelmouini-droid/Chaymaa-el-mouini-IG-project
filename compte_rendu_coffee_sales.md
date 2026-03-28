@@ -1,6 +1,8 @@
 # ☕ Compte Rendu — Analyse des Ventes Coffee Sales
 **ENCG Settat — Université Hassan 1er**
+
 AIF 2026 CHAYMAA EL MOUINI
+
 *Performance Commerciale | Mars 2024 → Mars 2025*
 
 ---
