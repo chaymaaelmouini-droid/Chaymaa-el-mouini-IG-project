@@ -2,10 +2,12 @@
  
  ![Texte alternatif](https://github.com/chaymaaelmouini-droid/Chaymaa-el-mouini-IG-project/blob/main/WhatsApp%20Image%202026-03-29%20at%2000.30.35_154x230.jpg)
 
-# ☕ Compte Rendu — Analyse des Ventes Coffee Sales
+# ☕ Compte Rendu — Analyse des Ventes de Café 
 
 **Préparé par : CHAYMAA EL MOUINI**
-*ENCG Settat — Université Hassan 1er*
+*ENCG Settat — Université Hassan 1er* AIF GROUPE 2026
+
+
 *Performance Commerciale | Mars 2024 → Mars 2025*
 
 ---
@@ -22,6 +24,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 
 ## 2. Indicateurs Clés de Performance (KPI)
 
+<div align="center">
+ 
 | Indicateur | Valeur |
 |---|---|
 | **Chiffre d'Affaires Total** | 112 246 € |
@@ -33,11 +37,14 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 | **Mode de Paiement** | 100 % carte bancaire |
 
 ---
-
+<div align="left">
+ 
 ## 3. Analyse des Ventes par Produit
 
 ### 3.1 Classement par Chiffre d'Affaires
 
+<div align="center">
+ 
 | Rang | Produit | Ventes | CA (€) | Prix Moy. (€) | Part CA |
 |:---:|---|:---:|---:|:---:|:---:|
 | 🥇 | Latte | 757 | 26 875 | 35,50 | 23,9 % |
@@ -49,6 +56,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 | 7 | Cortado | 287 | 7 385 | 25,73 | 6,6 % |
 | 8 | Espresso | 129 | 2 690 | 20,85 | 2,4 % |
 
+<div align="left">
+ 
 ### 3.2 Observations
 
 - Le **Latte** et l'**Americano with Milk** représentent à eux seuls **45,9 %** du chiffre d'affaires total.
@@ -62,6 +71,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 
 ### 4.1 Évolution Mensuelle du CA
 
+<div align="center">
+ 
 | Mois | Transactions | CA (€) | Part CA |
 |---|:---:|---:|:---:|
 | Janvier | 201 | 6 399 | 5,7 % |
@@ -77,6 +88,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 | Novembre | 259 | 8 591 | 7,7 % |
 | Décembre | 259 | 8 238 | 7,3 % |
 
+<div align="left">
+ 
 **Observations :**
 - Deux pics majeurs sont identifiés : **mars** (début de printemps) et **octobre** (rentrée/automne), correspondant probablement à des périodes d'affluence scolaire ou universitaire.
 - Le mois d'**avril** enregistre la performance la plus faible (5 720 €, 168 transactions), soit une chute de -64 % par rapport à mars — creux potentiellement lié aux vacances.
@@ -84,6 +97,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 
 ### 4.2 Performance par Jour de la Semaine
 
+<div align="center">
+ 
 | Jour | Transactions | CA (€) |
 |---|:---:|---:|
 | **Mardi** | 572 | **18 168 €** |
@@ -94,6 +109,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 | Samedi | 465 | 14 734 € |
 | Dimanche | 425 | 13 336 € |
 
+<div align="left">
+ 
 **Observations :**
 - Le **mardi** est le jour le plus rentable, tandis que le **dimanche** affiche le CA le plus faible.
 - La semaine de travail (lundi–vendredi) génère **75,5 %** du CA total, contre 24,5 % pour le week-end.
@@ -101,6 +118,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 
 ### 4.3 Distribution Horaire
 
+<div align="center">
+ 
 | Tranche | CA Cumulé (€) | Pic ? |
 |---|---:|:---:|
 | 6h – 8h | 10 013 | |
@@ -109,6 +128,8 @@ Ce compte rendu présente une analyse complète des données de ventes d'un éta
 | 15h – 17h | **24 168** | ⭐ Après-midi |
 | 18h – 22h | 30 526 | |
 
+<div align="left">
+ 
 - Le **pic principal** se situe à **10h00** (10 199 € de CA cumulé sur la période).
 - La tranche **16h00** est le second pic important (9 032 €), correspondant à la pause de l'après-midi.
 - L'activité reste soutenue jusqu'à **22h00**, suggérant une clientèle nocturne non négligeable.
