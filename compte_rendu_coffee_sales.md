@@ -1,3 +1,5 @@
+<div align="center">
+ 
  ![Texte alternatif](https://github.com/chaymaaelmouini-droid/Chaymaa-el-mouini-IG-project/blob/main/WhatsApp%20Image%202026-03-29%20at%2000.30.35_154x230.jpg)
 
 # ☕ Compte Rendu — Analyse des Ventes Coffee Sales
@@ -7,7 +9,8 @@
 *Performance Commerciale | Mars 2024 → Mars 2025*
 
 ---
-
+<div align="left">
+ 
 ## 1. Contexte & Objectifs
 
 Ce compte rendu présente une analyse complète des données de ventes d'un établissement de café sur une période de 13 mois (mars 2024 à mars 2025). L'objectif est d'identifier les tendances de consommation, les produits les plus performants, les pics d'activité temporels et les leviers d'optimisation commerciale.
