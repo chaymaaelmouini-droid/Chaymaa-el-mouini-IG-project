@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compte Rendu — Chaymaa El Mouini</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --green:       #006633;
+    --green-med:   #008844;
+    --green-light: #e8f5ee;
+    --gold:        #D4A017;
+    --gold-light:  #fff8e1;
+    --dark:        #1a2e22;
+    --muted:       #5a7a65;
+    --border:      #d0e4d8;
+    --gray:        #f5f9f6;
+    --white:       #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: #f0f4f1;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 40px rgba(0,102,51,0.10);
+    overflow: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(160deg, #006633 0%, #004d26 60%, #003318 100%);
+    padding: 60px 50px 50px;
+    text-align: center;
+    position: relative;
+  }
+  .cover-encg {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 36px;
+  }
+  .cover-photo-wrap {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    overflow: hidden;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .cover-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .cover-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .cover-role {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 36px;
+  }
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--gold);
+    margin: 0 auto 28px;
+    border-radius: 2px;
+  }
+  .cover-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+  }
+  .cover-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 36px;
+  }
+  .cover-meta {
+    display: inline-flex;
+    gap: 24px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 14px 28px;
+  }
+  .cover-meta-item {
+    text-align: center;
+  }
+  .cover-meta-item .label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .cover-meta-item .value {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 2px;
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 50px 54px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    letter-spacing: 0.3px;
+  }
+  .section-title .num {
+    background: var(--gold);
+    color: #1a1a1a;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--green);
+    margin: 24px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--green-light);
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #2d4a36;
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .kpi-card {
+    background: var(--green-light);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--green);
+  }
+  .kpi-card.gold { border-left-color: var(--gold); background: var(--gold-light); }
+  .kpi-card .kpi-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .kpi-card .kpi-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--green);
+  }
+  .kpi-card.gold .kpi-value { color: #8B6914; }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+    margin: 16px 0 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 8px rgba(0,102,51,0.07);
+  }
+  thead th {
+    background: var(--green);
+    color: white;
+    padding: 10px 14px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  thead th:first-child { text-align: left; }
+  tbody tr:nth-child(even) { background: var(--gray); }
+  tbody tr:hover { background: #d8eee2; }
+  tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    color: var(--dark);
+  }
+  tbody td:first-child { text-align: left; font-weight: 500; }
+
+  /* ── LISTS ── */
+  ul {
+    padding-left: 0;
+    margin: 10px 0 16px;
+    list-style: none;
+  }
+  ul li {
+    font-size: 0.88rem;
+    color: #2d4a36;
+    padding: 6px 0 6px 26px;
+    position: relative;
+    border-bottom: 1px dashed #e0eee6;
+  }
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 4px;
+    color: var(--green);
+    font-weight: 700;
+  }
+  ul li strong { color: var(--green); }
+
+  /* ── ALERT / HIGHLIGHT BOXES ── */
+  .box {
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 0.87rem;
+  }
+  .box.green { background: var(--green-light); border-left: 4px solid var(--green); }
+  .box.gold  { background: var(--gold-light);  border-left: 4px solid var(--gold); }
+
+  /* ── CONCLUSION ── */
+  .conclusion-box {
+    background: linear-gradient(135deg, var(--green-light), var(--gold-light));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: linear-gradient(135deg, #006633, #004d26);
+    padding: 24px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-left {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.8rem;
+  }
+  .footer-left strong { color: white; }
+  .footer-badge {
+    background: var(--gold);
+    color: #1a1a1a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-encg">ENCG Settat &nbsp;·&nbsp; Université Hassan 1er</div>
+    <div class="cover-photo-wrap">
+      <img src="data:image/jpeg;base64,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" alt="Chaymaa El Mouini">
+    </div>
+    <div class="cover-name">Chaymaa El Mouini</div>
+    <div class="cover-role">Étudiante — ENCG Settat</div>
+    <div class="cover-divider"></div>
+    <div class="cover-title">☕ Compte Rendu</div>
+    <div class="cover-subtitle">Analyse des Ventes — Coffee Sales</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="label">Auteur</div>
+        <div class="value">Chaymaa El Mouini</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Date</div>
+        <div class="value">Mars 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Période</div>
+        <div class="value">Mars 2024 – Mars 2025</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="label">Source</div>
+        <div class="value">Coffe_Sales_Data.xlsx</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- 1. Contexte -->
+    <div class="section-title"><span class="num">1</span> Contexte &amp; Objectifs</div>
+    <p>Ce compte rendu présente une analyse complète des données de ventes d'un établissement de café sur une période de 13 mois (mars 2024 à mars 2025). L'objectif est d'identifier les tendances de consommation, les produits les plus performants, les pics d'activité temporels et les leviers d'optimisation commerciale.</p>
+    <p><strong>Source :</strong> <code>Coffe_Sales_Data.xlsx</code> — 3 547 transactions &nbsp;|&nbsp; <strong>Outils :</strong> Python (pandas), Excel (openpyxl), Dashboard HTML (Chart.js)</p>
+
+    <!-- 2. KPI -->
+    <div class="section-title"><span class="num">2</span> Indicateurs Clés de Performance</div>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">CA Total</div><div class="kpi-value">112 246 €</div></div>
+      <div class="kpi-card"><div class="kpi-label">Transactions</div><div class="kpi-value">3 547</div></div>
+      <div class="kpi-card"><div class="kpi-label">Panier Moyen</div><div class="kpi-value">31,65 €</div></div>
+      <div class="kpi-card gold"><div class="kpi-label">Top Produit</div><div class="kpi-value">Latte</div></div>
+      <div class="kpi-card gold"><div class="kpi-label">Meilleur Mois</div><div class="kpi-value">Mars</div></div>
+      <div class="kpi-card gold"><div class="kpi-label">Pic Horaire</div><div class="kpi-value">10h00</div></div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--muted);font-style:italic;">100 % des transactions sont réglées par carte bancaire.</p>
+
+    <!-- 3. Produits -->
+    <div class="section-title"><span class="num">3</span> Analyse des Ventes par Produit</div>
+    <h3>3.1 Classement par Chiffre d'Affaires</h3>
+    <table>
+      <thead><tr><th>Produit</th><th>Ventes</th><th>CA (€)</th><th>Prix Moy.</th><th>Part CA</th></tr></thead>
+      <tbody>
+        <tr><td>🥇 Latte</td><td>757</td><td>26 875 €</td><td>35,50 €</td><td>23,9 %</td></tr>
+        <tr><td>🥈 Americano with Milk</td><td>809</td><td>24 751 €</td><td>30,60 €</td><td>22,0 %</td></tr>
+        <tr><td>🥉 Cappuccino</td><td>486</td><td>17 439 €</td><td>35,88 €</td><td>15,5 %</td></tr>
+        <tr><td>Americano</td><td>564</td><td>14 650 €</td><td>25,98 €</td><td>13,0 %</td></tr>
+        <tr><td>Hot Chocolate</td><td>276</td><td>9 933 €</td><td>35,99 €</td><td>8,8 %</td></tr>
+        <tr><td>Cocoa</td><td>239</td><td>8 521 €</td><td>35,65 €</td><td>7,6 %</td></tr>
+        <tr><td>Cortado</td><td>287</td><td>7 385 €</td><td>25,73 €</td><td>6,6 %</td></tr>
+        <tr><td>Espresso</td><td>129</td><td>2 690 €</td><td>20,85 €</td><td>2,4 %</td></tr>
+      </tbody>
+    </table>
+    <h3>3.2 Observations Clés</h3>
+    <ul>
+      <li>Le <strong>Latte</strong> et l'<strong>Americano with Milk</strong> représentent à eux seuls <strong>45,9 %</strong> du chiffre d'affaires total.</li>
+      <li>L'<strong>Americano with Milk</strong> est le plus vendu en volume (809 unités) mais 2ème en CA, en raison d'un prix moyen inférieur.</li>
+      <li>Les produits à base de lait chaud concentrent <strong>55,8 %</strong> du CA total.</li>
+      <li>L'<strong>Espresso</strong> est le produit le moins performant : 129 ventes seulement, prix moyen de 20,85 €.</li>
+    </ul>
+
+    <!-- 4. Temporelle -->
+    <div class="section-title"><span class="num">4</span> Analyse Temporelle</div>
+    <h3>4.1 Évolution Mensuelle du CA</h3>
+    <table>
+      <thead><tr><th>Mois</th><th>Transactions</th><th>CA (€)</th><th>Part CA</th></tr></thead>
+      <tbody>
+        <tr><td>Janvier</td><td>201</td><td>6 399 €</td><td>5,7 %</td></tr>
+        <tr><td>Février</td><td>423</td><td>13 215 €</td><td>11,8 %</td></tr>
+        <tr style="background:#e8f5ee;font-weight:600;"><td>⭐ Mars</td><td>494</td><td>15 892 €</td><td>14,2 %</td></tr>
+        <tr><td>Avril</td><td>168</td><td>5 720 €</td><td>5,1 %</td></tr>
+        <tr><td>Mai</td><td>241</td><td>8 164 €</td><td>7,3 %</td></tr>
+        <tr><td>Juin</td><td>223</td><td>7 618 €</td><td>6,8 %</td></tr>
+        <tr><td>Juillet</td><td>237</td><td>6 916 €</td><td>6,2 %</td></tr>
+        <tr><td>Août</td><td>272</td><td>7 614 €</td><td>6,8 %</td></tr>
+        <tr><td>Septembre</td><td>344</td><td>9 989 €</td><td>8,9 %</td></tr>
+        <tr style="background:#e8f5ee;font-weight:600;"><td>⭐ Octobre</td><td>426</td><td>13 891 €</td><td>12,4 %</td></tr>
+        <tr><td>Novembre</td><td>259</td><td>8 591 €</td><td>7,7 %</td></tr>
+        <tr><td>Décembre</td><td>259</td><td>8 238 €</td><td>7,3 %</td></tr>
+      </tbody>
+    </table>
+    <div class="box green">Deux pics majeurs : <strong>mars</strong> (début printemps) et <strong>octobre</strong> (rentrée/automne). Le mois d'avril enregistre la chute la plus forte <strong>(-64 % vs mars)</strong>, probablement lié aux vacances scolaires.</div>
+
+    <h3>4.2 Performance par Jour de la Semaine</h3>
+    <table>
+      <thead><tr><th>Jour</th><th>Transactions</th><th>CA (€)</th></tr></thead>
+      <tbody>
+        <tr style="background:#e8f5ee;font-weight:600;"><td>⭐ Mardi</td><td>572</td><td>18 168 €</td></tr>
+        <tr><td>Lundi</td><td>544</td><td>17 363 €</td></tr>
+        <tr><td>Vendredi</td><td>531</td><td>16 803 €</td></tr>
+        <tr><td>Jeudi</td><td>510</td><td>16 091 €</td></tr>
+        <tr><td>Mercredi</td><td>500</td><td>15 750 €</td></tr>
+        <tr><td>Samedi</td><td>465</td><td>14 734 €</td></tr>
+        <tr><td>Dimanche</td><td>425</td><td>13 336 €</td></tr>
+      </tbody>
+    </table>
+    <p>La semaine de travail génère <strong>75,5 %</strong> du CA total. Écart de <strong>+36 %</strong> entre le mardi (meilleur) et le dimanche (pire).</p>
+
+    <h3>4.3 Distribution Horaire</h3>
+    <p>Le pic principal se situe à <strong>10h00</strong> (10 199 € cumulés). La tranche <strong>16h00</strong> constitue le second pic (9 032 €). L'activité reste soutenue jusqu'à 22h00, révélant une clientèle nocturne non négligeable.</p>
+
+    <!-- 5. Diagnostic -->
+    <div class="section-title"><span class="num">5</span> Diagnostic &amp; Recommandations</div>
+    <h3>5.1 ✅ Points Forts</h3>
+    <ul>
+      <li>Diversité de l'offre : 8 produits couvrant différents segments (cafés, chocolats, boissons chaudes).</li>
+      <li>Présence active sur toutes les plages horaires (6h–22h), <strong>7 jours sur 7</strong>.</li>
+      <li>Produits stars solides : Latte et Americano with Milk assurent une base de CA stable.</li>
+      <li>Mois de mars exceptionnel : meilleure performance avec <strong>494 transactions</strong>.</li>
+    </ul>
+    <h3>5.2 ⚠️ Points de Vigilance</h3>
+    <ul>
+      <li><strong>Dépendance aux 2 leaders</strong> : Latte + Americano with Milk = 45,9 % du CA.</li>
+      <li><strong>Creux d'avril</strong> brutal : -64 % vs mars — à anticiper avec des offres saisonnières.</li>
+      <li><strong>Espresso sous-performant</strong> : 129 ventes seulement — repositionnement nécessaire.</li>
+      <li><strong>Week-end peu exploité</strong> : le dimanche représente seulement 11,9 % du CA hebdomadaire.</li>
+    </ul>
+    <h3>5.3 💡 Recommandations</h3>
+    <ul>
+      <li>Valoriser les produits à forte marge (Latte, Cappuccino ~35 €) plutôt que l'Americano (25 €).</li>
+      <li>Lancer des offres promotionnelles printanières dès fin mars pour limiter la baisse d'avril.</li>
+      <li>Créer des offres week-end dédiées (brunch, formules duo) pour combler l'écart avec la semaine.</li>
+      <li>Retravailler la visibilité de l'Espresso ou proposer un format "shot express" pour clients pressés.</li>
+      <li>Renforcer les effectifs aux heures 10h et 16h pour maximiser le CA pendant les pics.</li>
+    </ul>
+
+    <!-- 6. Conclusion -->
+    <div class="section-title"><span class="num">6</span> Conclusion</div>
+    <div class="conclusion-box">
+      <p>Sur la période <strong>mars 2024 – mars 2025</strong>, l'établissement affiche une performance commerciale solide avec <strong>112 246 € de CA</strong> pour <strong>3 547 transactions</strong>. La structure de l'offre est bien établie autour de produits phares (Latte, Americano with Milk, Cappuccino), et la clientèle est fidèle et répartie sur toute la journée.</p>
+      <p style="margin-bottom:0;">Les principaux axes d'amélioration portent sur la <strong>gestion des creux saisonniers</strong>, la <strong>valorisation du week-end</strong>, et l'<strong>optimisation de la gamme</strong> en repositionnant les produits à faible rotation comme l'Espresso.</p>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Chaymaa El Mouini</strong> &nbsp;·&nbsp; ENCG Settat — Université Hassan 1er &nbsp;·&nbsp; Mars 2026
+    </div>
+    <div class="footer-badge">Coffee Sales Analysis</div>
+  </div>
+
+</div><!-- /page -->
+</body>
+</html>
