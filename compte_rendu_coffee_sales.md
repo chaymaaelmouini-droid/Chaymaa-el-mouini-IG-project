@@ -1,4 +1,4 @@
-![Texte alternatif](https://github.com/chaymaaelmouini-droid/Chaymaa-el-mouini-IG-project/blob/main/WhatsApp%20Image%202026-03-29%20at%2000.30.35.jpeg)
+ ![Texte alternatif](https://github.com/chaymaaelmouini-droid/Chaymaa-el-mouini-IG-project/blob/main/WhatsApp%20Image%202026-03-29%20at%2000.30.35_154x230.jpg)
 
 # ☕ Compte Rendu — Analyse des Ventes Coffee Sales
 
