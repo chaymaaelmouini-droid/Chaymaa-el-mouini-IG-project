@@ -185,6 +185,7 @@ Sur la période mars 2024 – mars 2025, l'établissement affiche une performanc
 Les principaux axes d'amélioration portent sur la **gestion des creux saisonniers** (avril, janvier), la **valorisation du week-end**, et l'**optimisation de la gamme** en repositionnant les produits à faible rotation comme l'Espresso.
 
 ---
+<div align="RIGHT">
+   CHAYMAA EL MOUINI
 
-*Rapport généré automatiquement à partir du fichier `Coffe_Sales_Data.xlsx`*
 *ENCG Settat — Université Hassan 1er | Mars 2026*
