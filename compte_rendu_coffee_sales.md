@@ -188,4 +188,4 @@ Les principaux axes d'amélioration portent sur la **gestion des creux saisonnie
 <div align="RIGHT">
    CHAYMAA EL MOUINI
 
-*ENCG Settat — Université Hassan 1er | Mars 2026*
+*ENCG Settat — Université Hassan 1er | Groupe AIF PROMOTION 2026/2027
