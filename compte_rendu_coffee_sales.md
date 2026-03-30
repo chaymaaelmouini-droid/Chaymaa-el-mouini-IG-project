@@ -5,7 +5,7 @@
 # ☕ Compte Rendu — Analyse des Ventes de Café 
 
 **Préparé par : CHAYMAA EL MOUINI**
-*ENCG Settat — Université Hassan 1er* AIF GROUPE 2026
+*ENCG Settat — Université Hassan 1er* AIF GROUPE 2025/2026
 
 
 *Performance Commerciale | Mars 2024 → Mars 2025*
