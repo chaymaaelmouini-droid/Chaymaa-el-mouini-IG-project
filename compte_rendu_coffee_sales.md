@@ -5,7 +5,7 @@
 # ☕ Compte Rendu — Analyse des Ventes de Café 
 
 **Préparé par : CHAYMAA EL MOUINI**
-*ENCG Settat — Université Hassan 1er* AIF M1 2025/2026
+*ENCG Settat — Université Hassan 1er* AIF M1 2026/2027
 
 
 *Performance Commerciale | Mars 2024 → Mars 2025*
@@ -186,6 +186,6 @@ Les principaux axes d'amélioration portent sur la **gestion des creux saisonnie
 
 ---
 <div align="RIGHT">
-   CHAYMAA EL MOUINI
-
-*ENCG Settat — Université Hassan 1er | Groupe AIF PROMOTION 2026/2027
+ 
+ ### CHAYMAA EL MOUINI
+ ##### ENCG Settat — Université Hassan 1er | Groupe AIF PROMOTION 2026/2027
